@@ -11,7 +11,6 @@ RUN \
  cd /opt && \
  tar zxvf lidarr.tar.gz && \
  rm lidarr.tar.gz && \
- LIDARR_DIR=$(ls | grep Lidarr*) && \
  echo "**** cleanup ****" && \
  apt-get autoremove -y && apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \

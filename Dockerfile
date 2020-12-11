@@ -6,8 +6,8 @@ RUN \
  apt-get install -y \
         jq xml-twig-tools && \
  echo "**** install sonarr ****" && \
- LIDARR_VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/lidarr/Lidarr/releases/latest | awk -F / '{print $NF}') && \
- curl -L -o /opt/lidarr.tar.gz https://github.com/lidarr/lidarr/archive/${LIDARR_VERSION}.tar.gz && \
+ LIDARR_RELEASE=$(curl -sL "https://lidarr.servarr.com/v1/update/master/changes?os=linux" | jq -r '.[0].version') && \
+ curl -L -o /opt/lidarr.tar.gz https://github.com/lidarr/Lidarr/releases/download/v${LIDARR_RELEASE}/Lidarr.master.$LIDARR_RELEASE.linux.tar.gz && \
  cd /opt && \
  tar zxvf lidarr.tar.gz && \
  rm lidarr.tar.gz && \
@@ -24,7 +24,7 @@ COPY start.sh .
 COPY healthcheck.sh .
 RUN chmod +x *.sh
 
-EXPOSE 7878
+EXPOSE 8686
 VOLUME /config
 
 HEALTHCHECK --interval=5m --timeout=5s \

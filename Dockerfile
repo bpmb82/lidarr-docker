@@ -4,7 +4,7 @@ RUN \
  echo "**** install packages ****" && \
  apt-get update && \
  apt-get install -y \
-        jq xml-twig-tools && \
+        jq xml-twig-tools libchromaprint-tools && \
  echo "**** install sonarr ****" && \
  LIDARR_RELEASE=$(curl -sL "https://lidarr.servarr.com/v1/update/master/changes?os=linux" | jq -r '.[0].version') && \
  curl -L -o /opt/lidarr.tar.gz https://github.com/lidarr/Lidarr/releases/download/v${LIDARR_RELEASE}/Lidarr.master.$LIDARR_RELEASE.linux.tar.gz && \

@@ -21,10 +21,12 @@ RUN \
 WORKDIR /opt
 COPY start.sh .
 COPY healthcheck.sh .
+COPY backup.sh .
 RUN chmod +x *.sh
 
 EXPOSE 8686
 VOLUME /config
+VOLUME /backups
 
 HEALTHCHECK --interval=5m --timeout=5s \
   CMD /opt/healthcheck.sh

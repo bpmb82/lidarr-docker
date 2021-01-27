@@ -28,7 +28,7 @@ EXPOSE 8686
 VOLUME /config
 VOLUME /backups
 
-HEALTHCHECK --interval=5m --timeout=5s \
+HEALTHCHECK --interval=90s --timeout=10s \
   CMD /opt/healthcheck.sh
 
 ENTRYPOINT ["/opt/start.sh"]
